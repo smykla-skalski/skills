@@ -18,11 +18,20 @@ SAI is a collection of skills that agents can invoke to perform common developme
 Install the SAI plugin in Claude Code:
 
 ```bash
-# Install from this repository
-claude --plugin-dir /path/to/this/repo
+# Add the marketplace
+/plugin marketplace add git@github.com:smykla-skalski/skills.git
 
-# Or install from marketplace (once published)
+# Install the plugin
 /plugin install sai@sai-skills
+
+# Restart Claude Code to load the plugin
+```
+
+Or for local development:
+
+```bash
+# Install from local directory
+claude --plugin-dir /path/to/this/repo
 ```
 
 ## Usage
@@ -71,3 +80,20 @@ See [CLAUDE.md](./CLAUDE.md) for detailed documentation on:
 - Workflow patterns
 - State management
 - Testing and contribution guidelines
+
+## Repository
+
+- **GitHub**: git@github.com:smykla-skalski/skills.git
+- **Marketplace ID**: `sai-skills`
+- **Plugin Name**: `sai`
+
+## Contributing
+
+To contribute new skills or improvements:
+
+1. Fork the repository
+2. Create a feature branch
+3. Add your skill to `skills/` directory
+4. Follow the skill definition format in CLAUDE.md
+5. Test locally with `claude --plugin-dir .`
+6. Submit a pull request
