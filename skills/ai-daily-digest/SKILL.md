@@ -98,6 +98,8 @@ Filter out stories where:
 
 **Step 5: Categorize** into template sections and select Top 5 from filtered content.
 
+**Step 6: Completeness check** — compare categorized items against the Length Guidelines table in `output-template.md`. If any section is below its target minimum, return to the corresponding research phase and run additional searches from `references/search-patterns.md` to fill the gap. Every section in the template must have content before proceeding.
+
 ### Phase 17: Generate Digest
 
 1. Load `output-template.md`
