@@ -1,12 +1,28 @@
 {
-  "marketplaceId": "sai-skills",
-  "displayName": "SAI Skills",
-  "description": "Skills for Agentic Intelligence - specialized capabilities for development workflows",
+  "name": "sai-skills",
+  "owner": {
+    "name": "Smykla Skalski Labs"
+  },
+  "metadata": {
+    "description": "Skills for Agentic Intelligence - specialized capabilities for development workflows",
+    "version": "1.0.0"
+  },
   "plugins": [
     {
       "name": "sai",
-      "repository": "https://github.com/smykla-skalski/skills",
-      "branch": "main"
+      "source": {
+        "source": "github",
+        "repo": "smykla-skalski/skills",
+        "ref": "main"
+      },
+      "description": "Skills for Agentic Intelligence - a collection of specialized capabilities for development workflows, automation, and productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["skills", "automation", "workflows", "ai-news"]
     }
   ]
 }
