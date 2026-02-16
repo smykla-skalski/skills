@@ -56,6 +56,12 @@ Generate curated AI news digests from multiple sources with intelligent deduplic
 
 **Usage**: `/sai:ai-daily-digest [--date YYYY-MM-DD] [--skip-notion]`
 
+### review-claude-md
+
+Audit, score, and fix CLAUDE.md files against a 100-point rubric based on official Anthropic best practices and community guidelines. Iterates until the target grade is achieved.
+
+**Usage**: `/sai:review-claude-md [path/to/repo] [--score-only] [--strict] [--target 95|A+]`
+
 ## Plugin Structure
 
 ```
@@ -64,10 +70,12 @@ Generate curated AI news digests from multiple sources with intelligent deduplic
 │   ├── plugin.json         # Plugin metadata
 │   └── marketplace.json    # Marketplace configuration
 ├── skills/
-│   └── ai-daily-digest/    # Each skill in its own directory
-│       ├── SKILL.md        # Skill definition
-│       ├── sources.md      # Data sources
-│       └── output-template.md
+│   ├── ai-daily-digest/    # AI news digest skill
+│   │   ├── SKILL.md
+│   │   ├── sources.md
+│   │   └── output-template.md
+│   └── review-claude-md/   # CLAUDE.md review & fix skill
+│       └── SKILL.md
 └── findings/               # Runtime state (gitignored)
 ```
 
