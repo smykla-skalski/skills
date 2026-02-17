@@ -1,7 +1,7 @@
 ---
 name: ai-daily-digest
 description: Daily AI news digest covering technical advances, business news, and engineering impact. Aggregates from research papers, tech blogs, HN, newsletters. Use daily for staying current on AI developments.
-argument-hint: "[--focus technical|business|engineering|leadership]"
+argument-hint: "[--focus technical|business|engineering|leadership] [--notion-page-id ID] [--no-notion]"
 allowed-tools: WebSearch, WebFetch, Read, Write, Bash, Task, Glob
 user-invocable: true
 ---
@@ -15,6 +15,43 @@ Generate comprehensive daily AI news digest with technical, business, and engine
 Parse from `$ARGUMENTS`:
 
 - `--focus [technical|business|engineering|leadership|all]` — Default: all
+- `--notion-page-id [UUID]` — Notion parent page ID for digest publishing (overrides env var)
+- `--no-notion` — Skip Notion publishing entirely (archive-only mode)
+
+## Configuration
+
+### Notion Parent Page ID (required for publishing)
+
+The digest is published to a Notion page. You must configure the parent page ID.
+
+**Resolution order** (first match wins):
+
+1. `--notion-page-id` argument
+2. `NOTION_PARENT_PAGE_ID` environment variable
+3. Interactive prompt — skill will ask the user at runtime
+
+**How to find your Notion page ID:**
+
+1. Open the target parent page in your browser
+2. Copy the URL — it looks like `https://www.notion.so/Page-Title-{32-hex-chars}`
+3. The page ID is the last 32 hex characters (insert hyphens as `8-4-4-4-12` to get UUID format)
+4. Alternatively: click "Share" → "Copy link" and extract the ID from the URL
+
+**How to persist** (recommended): Set the env var in your shell profile (`~/.zshrc`, `~/.bashrc`):
+
+```bash
+export NOTION_PARENT_PAGE_ID="your-page-id-here"
+```
+
+Or in `~/.claude/settings.json` under the `"env"` key:
+
+```json
+{
+  "env": {
+    "NOTION_PARENT_PAGE_ID": "your-page-id-here"
+  }
+}
+```
 
 ## State Files
 
@@ -45,10 +82,11 @@ Example:
 
 1. Read `sources.md` for source URLs and tiers
 2. Read `output-template.md` for digest format
-3. Parse arguments for focus area
-4. Read `.last-run` — set date range from last run to today
-5. Read `.covered-stories` — build in-memory `covered_ids` and `covered_urls` sets
-6. If today is Friday, enable weekly recap mode (see `references/search-patterns.md` → Friday Weekly Recap)
+3. Parse arguments for focus area and `--notion-page-id`
+4. **Resolve Notion page ID** — if `--no-notion` is set, set `notion_page_id` to `null` (archive-only mode). Otherwise check in order: `--notion-page-id` arg → `NOTION_PARENT_PAGE_ID` env var → prompt user interactively. Store resolved value as `notion_page_id` for Phase 18. If user declines to provide an ID, skip Notion publishing (archive-only mode).
+5. Read `.last-run` — set date range from last run to today
+6. Read `.covered-stories` — build in-memory `covered_ids` and `covered_urls` sets
+7. If today is Friday, enable weekly recap mode (see `references/search-patterns.md` → Friday Weekly Recap)
 
 ### Phases 2-15: Research
 
@@ -115,15 +153,17 @@ DO NOT update `.covered-stories` in this phase — wait for verification.
 
 **Step 1:** `mkdir -p ./findings/ai-daily-digest`
 
-**Step 2: Save to Notion (REQUIRED)**
+**Step 2: Save to Notion**
+
+Skip this step if `notion_page_id` was not resolved in Phase 1 (archive-only mode).
 
 Load Notion tool via ToolSearch (`select:mcp__notion__notion-create-pages`), then create page:
 
-- Parent page ID: `3035f40a-a0f4-81ea-8033-fc823dd8eb92`
+- Parent page ID: use `notion_page_id` resolved in Phase 1
 - Title: `🤖 AI Digest {YYYY-MM-DD}`
 - Content: Full digest markdown (excluding H1 title)
 
-Confirm Notion page created successfully before continuing.
+If page creation fails, warn the user and continue — the archive copy in Step 3 still provides value.
 
 **Step 3:** Write archive copy to `./findings/ai-daily-digest/ai-digest-{YYYY-MM-DD}.md`
 
@@ -180,4 +220,8 @@ Story items use `- [ ]` checkbox format for newsletter curation. User checks sto
 /ai-digest
 /ai-digest --focus technical
 /ai-digest --focus business
+/ai-digest --notion-page-id 12345678-abcd-1234-efgh-123456789abc
+/ai-digest --focus technical --notion-page-id 12345678-abcd-1234-efgh-123456789abc
+/ai-digest --no-notion
+/ai-digest --focus technical --no-notion
 ```
