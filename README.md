@@ -19,10 +19,10 @@ Install the SAI plugin in Claude Code:
 
 ```bash
 # Add the marketplace
-/plugin marketplace add git@github.com:smykla-skalski/skills.git
+/plugin marketplace add git@github.com:smykla-skalski/sai.git
 
 # Install the plugin
-/plugin install sai@sai-skills
+/plugin install sai@skills
 
 # Restart Claude Code to load the plugin
 ```
@@ -131,8 +131,8 @@ See [CLAUDE.md](./CLAUDE.md) for detailed documentation on:
 
 ## Repository
 
-- **GitHub**: git@github.com:smykla-skalski/skills.git
-- **Marketplace ID**: `sai-skills`
+- **GitHub**: git@github.com:smykla-skalski/sai.git
+- **Marketplace ID**: `skills`
 - **Plugin Name**: `sai`
 
 ## Contributing

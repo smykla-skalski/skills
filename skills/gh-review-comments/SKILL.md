@@ -14,7 +14,7 @@ Wraps `gh api` (REST and GraphQL) via bash scripts to operate on PR review threa
 
 Parse from `$ARGUMENTS`:
 
-- First positional arg: `owner/repo` (e.g., `smykla-skalski/skills`) — **required**
+- First positional arg: `owner/repo` (e.g., `smykla-skalski/sai`) — **required**
 - Second positional arg: PR number — **required**
 - `--author <login>` — Filter threads by reviewer username
 - `--thread-id <id>` — Target a specific thread by GraphQL node ID (`PRRT_...`)
@@ -186,29 +186,29 @@ Read [references/gh-api-guide.md](references/gh-api-guide.md) for detailed API d
 
 ```bash
 # List all review threads on a PR
-/gh-review-comments smykla-skalski/skills 4
+/gh-review-comments smykla-skalski/sai 4
 
 # List only unresolved threads
-/gh-review-comments smykla-skalski/skills 4 --unresolved-only
+/gh-review-comments smykla-skalski/sai 4 --unresolved-only
 
 # List threads from a specific reviewer
-/gh-review-comments smykla-skalski/skills 4 --author Automaat
+/gh-review-comments smykla-skalski/sai 4 --author Automaat
 
 # Reply to all unresolved threads from a reviewer
-/gh-review-comments smykla-skalski/skills 4 --author Automaat --reply "Fixed in latest push"
+/gh-review-comments smykla-skalski/sai 4 --author Automaat --reply "Fixed in latest push"
 
 # Reply and resolve all threads from a reviewer
-/gh-review-comments smykla-skalski/skills 4 --author bartsmykla --reply "Done" --resolve
+/gh-review-comments smykla-skalski/sai 4 --author bartsmykla --reply "Done" --resolve
 
 # Resolve a specific thread without replying
-/gh-review-comments smykla-skalski/skills 4 --thread-id PRRT_kwDOCnTGG85tgSD3 --resolve
+/gh-review-comments smykla-skalski/sai 4 --thread-id PRRT_kwDOCnTGG85tgSD3 --resolve
 
 # Reply to and resolve a specific thread
-/gh-review-comments smykla-skalski/skills 4 --thread-id PRRT_kwDOCnTGG85tgSD3 --reply "Done, thanks!" --resolve
+/gh-review-comments smykla-skalski/sai 4 --thread-id PRRT_kwDOCnTGG85tgSD3 --reply "Done, thanks!" --resolve
 
 # Unresolve a thread (reopen it)
-/gh-review-comments smykla-skalski/skills 4 --thread-id PRRT_kwDOCnTGG85tgSD3 --unresolve
+/gh-review-comments smykla-skalski/sai 4 --thread-id PRRT_kwDOCnTGG85tgSD3 --unresolve
 
 # Create a review with line-level comments
-/gh-review-comments smykla-skalski/skills 4 --create-review
+/gh-review-comments smykla-skalski/sai 4 --create-review
 ```

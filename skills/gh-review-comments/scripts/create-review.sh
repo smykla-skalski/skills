@@ -6,7 +6,7 @@
 #
 # Arguments:
 #   owner         — Repository owner (e.g., "smykla-skalski")
-#   repo          — Repository name (e.g., "skills")
+#   repo          — Repository name (e.g., "sai")
 #   pr_number     — Pull request number
 #   event         — Review event: COMMENT, APPROVE, or REQUEST_CHANGES
 #   body          — Review body text (use "" for no body)

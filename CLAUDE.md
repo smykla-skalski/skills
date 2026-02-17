@@ -158,7 +158,7 @@ Skills commonly use these tool patterns:
 
 This plugin integrates with Claude Code via:
 
-- **Plugin installation**: `/plugin install sai@sai-skills` or `claude --plugin-dir .`
+- **Plugin installation**: `/plugin install sai@skills` or `claude --plugin-dir .`
 - **Namespaced invocation**: `/sai:skill-name [args]`
 - **Direct invocation**: `/skill-name [args]` (if no conflicts)
 - **Argument parsing**: From `$ARGUMENTS` environment variable

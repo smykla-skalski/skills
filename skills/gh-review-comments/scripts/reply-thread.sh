@@ -6,7 +6,7 @@
 #
 # Arguments:
 #   owner       — Repository owner (e.g., "smykla-skalski")
-#   repo        — Repository name (e.g., "skills")
+#   repo        — Repository name (e.g., "sai")
 #   pr_number   — Pull request number
 #   comment_id  — Integer database ID of the TOP-LEVEL comment in the thread
 #   body        — Reply text (supports Markdown)
