@@ -11,7 +11,7 @@ This repository is a **monorepo of Claude Code plugins** called **SAI (Skills fo
 Each plugin follows the Claude Code plugin structure:
 
 - **Plugin metadata**: `{plugin-name}/.claude-plugin/plugin.json` defines name, version, and description
-- **Skill definition**: `{plugin-name}/SKILL.md` at plugin root (flat structure)
+- **Skill definition**: `{plugin-name}/skills/{skill-name}/SKILL.md` (required for Claude Code discovery)
 - **Supporting files**: `{plugin-name}/references/`, `{plugin-name}/scripts/`, etc.
 - **Runtime state**: `{plugin-name}/findings/` (gitignored)
 - **Independent versioning**: Each plugin has its own version
@@ -23,7 +23,9 @@ Each plugin follows the Claude Code plugin structure:
 ├── ai-daily-digest/
 │   ├── .claude-plugin/
 │   │   └── plugin.json     # Plugin metadata
-│   ├── SKILL.md            # Skill definition at plugin root
+│   ├── skills/
+│   │   └── ai-daily-digest/
+│   │       └── SKILL.md    # Skill definition (required path for discovery)
 │   ├── sources.md          # Data sources, search patterns
 │   ├── output-template.md  # Output format template
 │   ├── references/         # Supporting documentation
@@ -31,19 +33,25 @@ Each plugin follows the Claude Code plugin structure:
 │   └── README.md           # Plugin-specific docs
 ├── gh-review-comments/
 │   ├── .claude-plugin/plugin.json
-│   ├── SKILL.md
+│   ├── skills/
+│   │   └── gh-review-comments/
+│   │       └── SKILL.md
 │   ├── references/
 │   ├── scripts/
 │   └── README.md
 ├── review-claude-md/
 │   ├── .claude-plugin/plugin.json
-│   ├── SKILL.md
+│   ├── skills/
+│   │   └── review-claude-md/
+│   │       └── SKILL.md
 │   ├── references/
 │   ├── scripts/
 │   └── README.md
 ├── review-skill/
 │   ├── .claude-plugin/plugin.json
-│   ├── SKILL.md
+│   ├── skills/
+│   │   └── review-skill/
+│   │       └── SKILL.md
 │   ├── references/
 │   ├── scripts/
 │   └── README.md
@@ -54,7 +62,7 @@ Each plugin follows the Claude Code plugin structure:
 
 ## Skill Definition Format
 
-Each skill MUST have a `SKILL.md` file with YAML frontmatter:
+Each skill MUST have a `SKILL.md` file at `{plugin-name}/skills/{skill-name}/SKILL.md` with YAML frontmatter. This path is required for Claude Code to discover and register the skill as a command.
 
 ```markdown
 ---
@@ -127,7 +135,7 @@ When adding a new plugin to the SAI monorepo:
 
 1. Create plugin directory: `mkdir {plugin-name}/`
 2. Create `.claude-plugin/plugin.json` with metadata (start at v1.0.0)
-3. Create `SKILL.md` at plugin root with required frontmatter
+3. Create `skills/{skill-name}/SKILL.md` with required frontmatter
 4. Add supporting files if needed (references/, scripts/, templates)
 5. Create `findings/` directory if plugin needs runtime state
 6. Create `README.md` with installation and usage instructions
