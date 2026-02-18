@@ -50,6 +50,17 @@
       "license": "MIT",
       "category": "productivity",
       "tags": ["skill", "review", "best-practices"]
+    },
+    {
+      "name": "humanize",
+      "source": "./humanize",
+      "description": "Make text sound natural by removing AI writing patterns",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["writing", "ai-cleanup", "text"]
     }
   ]
 }

@@ -4,14 +4,15 @@ A collection of independent Claude Code plugins for development workflows, autom
 
 ## Overview
 
-This monorepo contains 4 independent plugins, each providing specialized capabilities:
+This monorepo contains 5 independent plugins, each providing specialized capabilities:
 
-| Plugin | Description | Installation Path |
-|--------|-------------|-------------------|
-| **ai-daily-digest** | Daily AI news digest covering technical advances, business news, and engineering impact | `ai-daily-digest/` |
-| **gh-review-comments** | List, reply to, resolve, and create GitHub PR review comment threads | `gh-review-comments/` |
-| **review-claude-md** | Audit and fix CLAUDE.md files using tiered binary checklist | `review-claude-md/` |
-| **review-skill** | Review and fix Claude Code skill definitions using tiered binary checklist | `review-skill/` |
+| Plugin                 | Description                                                                             | Installation Path     |
+|:-----------------------|:----------------------------------------------------------------------------------------|:----------------------|
+| **ai-daily-digest**    | Daily AI news digest covering technical advances, business news, and engineering impact | `ai-daily-digest/`    |
+| **gh-review-comments** | List, reply to, resolve, and create GitHub PR review comment threads                    | `gh-review-comments/` |
+| **humanize**           | Make text sound natural by removing AI writing patterns                                 | `humanize/`           |
+| **review-claude-md**   | Audit and fix CLAUDE.md files using tiered binary checklist                             | `review-claude-md/`   |
+| **review-skill**       | Review and fix Claude Code skill definitions using tiered binary checklist              | `review-skill/`       |
 
 ## Installation
 
@@ -26,6 +27,7 @@ Add the SAI marketplace, then install individual plugins:
 # Install individual plugins
 /plugin install sai/ai-daily-digest
 /plugin install sai/gh-review-comments
+/plugin install sai/humanize
 /plugin install sai/review-claude-md
 /plugin install sai/review-skill
 ```
@@ -41,6 +43,7 @@ git clone git@github.com:smykla-skalski/sai.git
 
 claude --plugin-dir /path/to/sai/ai-daily-digest
 claude --plugin-dir /path/to/sai/gh-review-comments
+claude --plugin-dir /path/to/sai/humanize
 claude --plugin-dir /path/to/sai/review-claude-md
 claude --plugin-dir /path/to/sai/review-skill
 ```
@@ -54,6 +57,14 @@ Daily AI news digest covering technical advances, business news, and engineering
 **Usage**: `/ai-daily-digest [--focus technical|business|engineering|leadership] [--notion-page-id ID] [--no-notion]`
 
 [Full documentation →](./ai-daily-digest/README.md)
+
+### humanize
+
+Make text sound natural by removing AI writing patterns. Based on Wikipedia's Signs of AI Writing guide — detects 24 patterns across content, language, style, communication, and filler categories.
+
+**Usage**: `/humanize path/to/file.md [--score-only] [--inline]`
+
+[Full documentation →](./humanize/README.md)
 
 ### gh-review-comments
 
