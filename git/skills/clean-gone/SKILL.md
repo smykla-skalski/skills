@@ -25,21 +25,19 @@ Parse from `$ARGUMENTS`:
 - First action MUST be Bash — no text output before executing the script
 - Never delete the current branch — skip and report in summary
 - Never remove the main worktree — only feature/task worktrees
-- Use `bash -c '...'` format for atomic execution
+- Execute `scripts/clean-gone.sh` as a single Bash invocation
 - Output summary directly as text (NOT via bash/printf)
 
 ## Workflow
 
 ### Phase 1: Execute Cleanup Script
 
-Execute immediately based on flags. Read `references/scripts.md` in full before selecting the script variant.
+Execute `scripts/clean-gone.sh` immediately, passing through any flags from `$ARGUMENTS`.
 
-Select script variant:
-
-- No flags → default (full cleanup)
-- `--dry-run` → preview only
-- `--no-worktrees` → gone branches only
-- Invalid flag → output error, show valid options (`--dry-run`, `--no-worktrees`), stop
+- No flags → full cleanup (gone + merged branches + worktrees)
+- `--dry-run` → preview only, no changes
+- `--no-worktrees` → gone branches only, no worktree removal or merge detection
+- Invalid flag → script exits with error, show valid options (`--dry-run`, `--no-worktrees`), stop
 
 ### Phase 2: Output Summary
 
