@@ -11,22 +11,25 @@ claude --plugin-dir /path/to/sai/gh-review-comments
 ## Usage
 
 ```bash
-# List all threads
-/gh-review-comments list <pr-url>
+# List all review threads on a PR
+/gh-review-comments owner/repo 42
 
-# Reply to a thread
-/gh-review-comments reply <pr-url> <thread-id> <message>
+# List unresolved threads from a specific reviewer
+/gh-review-comments owner/repo 42 --author reviewer --unresolved-only
 
-# Resolve a thread
-/gh-review-comments resolve <pr-url> <thread-id>
+# Reply to all unresolved threads from a reviewer
+/gh-review-comments owner/repo 42 --author reviewer --reply "Fixed"
 
-# Create new review comment
-/gh-review-comments create <pr-url> <file> <line> <message>
+# Reply and resolve a specific thread
+/gh-review-comments owner/repo 42 --thread-id PRRT_abc123 --reply "Done" --resolve
+
+# Create a review with line-level comments
+/gh-review-comments owner/repo 42 --create-review
 ```
 
 ## Documentation
 
-See [SKILL.md](./SKILL.md) for detailed configuration and workflow.
+See [SKILL.md](./skills/gh-review-comments/SKILL.md) for detailed configuration and workflow.
 
 ## License
 

@@ -70,7 +70,7 @@ Make text sound natural by removing AI writing patterns. Based on Wikipedia's Si
 
 List, reply to, resolve, and create GitHub PR review comment threads using gh CLI scripts. Manage code review feedback, reply to reviewer remarks, resolve conversations.
 
-**Usage**: `/gh-review-comments list <pr-url>`, `/gh-review-comments reply <pr-url> <thread-id> <message>`
+**Usage**: `/gh-review-comments owner/repo 42 [--reply "message"] [--resolve] [--author login]`
 
 [Full documentation →](./gh-review-comments/README.md)
 

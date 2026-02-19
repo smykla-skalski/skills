@@ -78,8 +78,8 @@ Example:
 
 ### Phase 1: Setup
 
-1. Read `sources.md` for source URLs and tiers
-2. Read `output-template.md` for digest format
+1. Read `references/sources.md` for source URLs and tiers
+2. Read `references/output-template.md` for digest format
 3. Parse arguments for focus area and `--notion-page-id`
 4. **Resolve Notion page ID** — if `--no-notion` is set, set `notion_page_id` to `null` (archive-only mode). Otherwise check in order: `--notion-page-id` arg → `NOTION_PARENT_PAGE_ID` env var → prompt user interactively. Store resolved value as `notion_page_id` for Phase 18. If user declines to provide an ID, skip Notion publishing (archive-only mode).
 5. Read `.last-run` — set date range from last run to today
@@ -138,7 +138,7 @@ Filter out stories where:
 
 ### Phase 17: Generate Digest
 
-1. Load `output-template.md`
+1. Load `references/output-template.md`
 2. Fill sections with filtered items from Phase 16 only
 3. Format: `- [ ] **[Title]** — [1-line summary] [Source: URL]`
    - Checkbox `- [ ]` on ALL story items with source URLs (renders as Notion task)

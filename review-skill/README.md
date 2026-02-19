@@ -16,7 +16,7 @@ claude --plugin-dir /path/to/sai/review-skill
 
 ## Documentation
 
-See [SKILL.md](./SKILL.md) for detailed configuration and workflow.
+See [SKILL.md](./skills/review-skill/SKILL.md) for detailed configuration and workflow.
 
 ## License
 

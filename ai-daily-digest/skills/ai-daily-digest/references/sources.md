@@ -171,7 +171,7 @@
 
 ---
 
-*Search query templates are in `references/search-patterns.md`.*
+*Search query templates are in `search-patterns.md` (sibling file in this directory).*
 
 ---
 

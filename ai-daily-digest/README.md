@@ -16,7 +16,7 @@ claude --plugin-dir /path/to/sai/ai-daily-digest
 
 ## Documentation
 
-See [SKILL.md](./SKILL.md) for detailed configuration and workflow.
+See [SKILL.md](./skills/ai-daily-digest/SKILL.md) for detailed configuration and workflow.
 
 ## License
 

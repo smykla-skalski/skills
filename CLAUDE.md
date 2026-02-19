@@ -23,7 +23,7 @@ Monorepo of Claude Code plugins called **SAI (Skills for Agentic Intelligence)**
 - Each plugin is self-contained in `{plugin-name}/` with independent versioning
 - `{plugin-name}/.claude-plugin/plugin.json` — plugin metadata (name, version, description)
 - `{plugin-name}/skills/{skill-name}/SKILL.md` — skill definition (**required** path for Claude Code discovery)
-- `{plugin-name}/references/` — supporting docs; `{plugin-name}/scripts/` — automation scripts
+- `{plugin-name}/skills/{skill-name}/references/` — supporting docs; `{plugin-name}/skills/{skill-name}/scripts/` — automation scripts
 - `{plugin-name}/findings/` — runtime state (gitignored)
 - Plugins: `ai-daily-digest`, `gh-review-comments`, `humanize`, `review-claude-md`, `review-skill`
 - Full directory tree: see `README.md` (do not duplicate here)
