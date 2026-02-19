@@ -1,6 +1,6 @@
 ---
 name: session
-description: Capture session context for continuity between Claude Code sessions. Use when ending a session, approaching context limits, or transitioning between distinct tasks. Prevents re-investigation and failed approach retries in the next session.
+description: Captures session context for continuity between Claude Code sessions. Use when ending a session, approaching context limits, or transitioning between distinct tasks. Prevents re-investigation and failed approach retries in the next session.
 argument-hint: "[session-focus]"
 allowed-tools: Read, Write, Bash, Grep, Glob, AskUserQuestion
 user-invocable: true
@@ -86,7 +86,7 @@ Need this to avoid wasting time?
 
 ### Phase 3: Build Handover Document
 
-Read `references/template.md` for the document structure.
+Read `references/template.md` in full before starting this phase.
 
 Populate the template following these rules:
 
@@ -96,12 +96,25 @@ Populate the template following these rules:
 - **Failed Approaches, Environment Constraints, Architectural Decisions, Investigation Findings**: Include only if non-empty.
 - **Current State and Next Steps**: Always include.
 
-### Phase 4: Save and Deliver
+### Phase 4: Verify
+
+Re-read the handover document and check against constraints:
+
+1. No empty sections remain (every heading has content below it).
+2. No absolute paths — all paths are repo-relative.
+3. No prose filler — every line passes the "need this to avoid wasting time?" test.
+4. No derivable content — nothing reconstructable in <2min from code/git/docs.
+5. Original prompt (if included) is verbatim, not paraphrased.
+6. Next steps are concrete actions with file paths, not vague intentions.
+
+If any check fails, revise the affected sections and re-verify.
+
+### Phase 5: Save and Deliver
 
 1. Generate filename: `.claude/sessions/YYMMDD-handover-{slug}.md` where `{slug}` is a short kebab-case summary.
 2. Write the handover document to that path. If the directory doesn't exist, create it with `mkdir -p .claude/sessions` and retry.
-3. Copy the document to clipboard via `pbcopy`.
-4. Report the file location and confirm clipboard copy to the user.
+3. Copy to clipboard: detect the platform clipboard command via Bash (`command -v pbcopy || command -v xclip || command -v xsel`). Use the first available (`pbcopy`, `xclip -selection clipboard`, or `xsel --clipboard --input`). If none are available, skip clipboard and inform the user.
+4. Report the file location and clipboard status to the user.
 
 ## Edge Cases
 
@@ -116,4 +129,36 @@ Populate the template following these rules:
 /session plugin-migration
 ```
 
-Produces `.claude/sessions/260219-handover-plugin-migration.md` with dense context about the migration work, saved and copied to clipboard.
+Produces `.claude/sessions/260219-handover-plugin-migration.md`:
+
+```markdown
+# Session Handover: Plugin migration to XDG paths: 4 of 6 migrated
+
+## Skill Activation
+
+**MANDATORY FIRST ACTION**: Before proceeding with ANY task, you MUST use the Skill tool to learn the following skills:
+
+**Required (used in previous session):**
+- `review-skill` — validated migrated plugins passed checklist
+
+## Original Request
+
+> migrate all plugins to use XDG persistent data paths instead of relative ./data dirs
+
+## Failed Approaches
+
+- Tried symlinking `./data` → XDG path: broke plugin cache updates, symlink target deleted on reinstall
+- Tried env var in plugin.json: not supported, plugin.json is static metadata only
+
+## Current State
+
+**Stopped At:** `git/skills/worktree/SKILL.md` — mid-migration, DATA_DIR resolved but read/write calls not updated
+**Blockers:** None
+**Open Questions:** Should `session` plugin also migrate? It writes to `.claude/sessions/` which is project-local, not plugin state
+
+## Next Steps
+
+1. Finish `git/skills/worktree/SKILL.md` — update file ops to use `$DATA_DIR`
+2. Migrate `git/skills/clean-gone/SKILL.md` — same pattern
+3. Run `/review-skill` on each migrated plugin
+```
