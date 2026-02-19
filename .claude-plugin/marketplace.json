@@ -19,6 +19,17 @@
       "tags": ["ai-news", "digest", "automation"]
     },
     {
+      "name": "browser-controller",
+      "source": "./browser-controller",
+      "description": "Programmatic control of Chrome/Firefox via CDP/Marionette",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["browser", "cdp", "marionette", "macos"]
+    },
+    {
       "name": "gh-review-comments",
       "source": "./gh-review-comments",
       "description": "List, reply to, resolve, and create GitHub PR review comment threads",
@@ -30,26 +41,15 @@
       "tags": ["github", "code-review", "pr-management"]
     },
     {
-      "name": "review-claude-md",
-      "source": "./review-claude-md",
-      "description": "Audit and fix CLAUDE.md files using tiered binary checklist",
+      "name": "git",
+      "source": "./git",
+      "description": "Git workflow automation: worktree creation with context transfer, branch cleanup, and reset utilities",
       "author": {
         "name": "Smykla Skalski Labs"
       },
       "license": "MIT",
       "category": "productivity",
-      "tags": ["claude-md", "review", "best-practices"]
-    },
-    {
-      "name": "review-skill",
-      "source": "./review-skill",
-      "description": "Review and fix Claude Code skill definitions using tiered binary checklist",
-      "author": {
-        "name": "Smykla Skalski Labs"
-      },
-      "license": "MIT",
-      "category": "productivity",
-      "tags": ["skill", "review", "best-practices"]
+      "tags": ["git", "worktree", "branch-management", "automation"]
     },
     {
       "name": "humanize",
@@ -63,15 +63,158 @@
       "tags": ["writing", "ai-cleanup", "text"]
     },
     {
-      "name": "git",
-      "source": "./git",
-      "description": "Git workflow automation: worktree creation with context transfer, branch cleanup, and reset utilities",
+      "name": "manage-agent",
+      "source": "./manage-agent",
+      "description": "Create, modify, or transform subagent definitions with quality validation",
       "author": {
         "name": "Smykla Skalski Labs"
       },
       "license": "MIT",
       "category": "productivity",
-      "tags": ["git", "worktree", "branch-management", "automation"]
+      "tags": ["agent", "management", "quality"]
+    },
+    {
+      "name": "manage-plan",
+      "source": "./manage-plan",
+      "description": "Investigate codebases and produce implementation plans",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["planning", "implementation", "codebase"]
+    },
+    {
+      "name": "ocr-finder",
+      "source": "./ocr-finder",
+      "description": "Find text in images using EasyOCR and return click coordinates",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["ocr", "image", "text-recognition", "macos"]
+    },
+    {
+      "name": "review-agent",
+      "source": "./review-agent",
+      "description": "Audit subagent definitions for quality compliance",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["agent", "review", "quality"]
+    },
+    {
+      "name": "review-claude-md",
+      "source": "./review-claude-md",
+      "description": "Audit and fix CLAUDE.md files using tiered binary checklist",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["claude-md", "review", "best-practices"]
+    },
+    {
+      "name": "review-plan",
+      "source": "./review-plan",
+      "description": "Review implementation plans for executor-readiness",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["plan", "review", "quality"]
+    },
+    {
+      "name": "review-skill",
+      "source": "./review-skill",
+      "description": "Review and fix Claude Code skill definitions using tiered binary checklist",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["skill", "review", "best-practices"]
+    },
+    {
+      "name": "screen-recorder",
+      "source": "./screen-recorder",
+      "description": "Record macOS screen with verification and format conversion",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["screen-recording", "video", "macos"]
+    },
+    {
+      "name": "session",
+      "source": "./session",
+      "description": "Capture session context for continuity between Claude Code sessions",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["session", "context", "handover"]
+    },
+    {
+      "name": "space-finder",
+      "source": "./space-finder",
+      "description": "Find and switch macOS Spaces by application name",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["spaces", "desktop", "macos"]
+    },
+    {
+      "name": "ui-inspector",
+      "source": "./ui-inspector",
+      "description": "Inspect live macOS UI elements via Accessibility API",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["ui", "accessibility", "inspection", "macos"]
+    },
+    {
+      "name": "verified-screenshot",
+      "source": "./verified-screenshot",
+      "description": "Capture screenshots with verification and retry logic",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["screenshot", "verification", "macos"]
+    },
+    {
+      "name": "web-automation",
+      "source": "./web-automation",
+      "description": "Investigate and implement web browser automation workflows",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["browser", "automation", "playwright", "selenium"]
+    },
+    {
+      "name": "window-controller",
+      "source": "./window-controller",
+      "description": "Find, activate, and screenshot macOS windows across Spaces",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "automation",
+      "tags": ["window", "management", "macos"]
     }
   ]
 }
