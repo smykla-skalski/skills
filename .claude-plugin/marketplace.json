@@ -107,6 +107,17 @@
       "tags": ["agent", "review", "quality"]
     },
     {
+      "name": "promptgen",
+      "source": "./promptgen",
+      "description": "Turn rough instructions into optimized, evidence-based prompts for AI agents",
+      "author": {
+        "name": "Smykla Skalski Labs"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["prompt-engineering", "prompt-optimization", "ai-prompts"]
+    },
+    {
       "name": "review-claude-md",
       "source": "./review-claude-md",
       "description": "Audit and fix CLAUDE.md files using tiered binary checklist",

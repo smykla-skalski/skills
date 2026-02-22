@@ -4,7 +4,7 @@ A collection of independent Claude Code plugins for development workflows, autom
 
 ## Overview
 
-This monorepo contains 19 independent plugins, each providing specialized capabilities:
+This monorepo contains independent plugins, each providing specialized capabilities:
 
 | Plugin                  | Description                                                                             | Installation Path      |
 |:------------------------|:----------------------------------------------------------------------------------------|:-----------------------|
@@ -16,6 +16,7 @@ This monorepo contains 19 independent plugins, each providing specialized capabi
 | **manage-agent**        | Create, modify, or transform subagent definitions with quality validation               | `manage-agent/`        |
 | **manage-plan**         | Investigate codebases and produce implementation plans                                  | `manage-plan/`         |
 | **ocr-finder**          | Find text in images using EasyOCR and return click coordinates                          | `ocr-finder/`          |
+| **promptgen**           | Turn rough instructions into optimized, evidence-based AI prompts                       | `promptgen/`           |
 | **review-agent**        | Audit subagent definitions for quality compliance                                       | `review-agent/`        |
 | **review-claude-md**    | Audit and fix CLAUDE.md files using tiered binary checklist                             | `review-claude-md/`    |
 | **review-plan**         | Review implementation plans for executor-readiness                                      | `review-plan/`         |
@@ -47,6 +48,7 @@ Add the SAI marketplace, then install individual plugins:
 /plugin install sai/manage-agent
 /plugin install sai/manage-plan
 /plugin install sai/ocr-finder
+/plugin install sai/promptgen
 /plugin install sai/review-agent
 /plugin install sai/review-claude-md
 /plugin install sai/review-plan
@@ -77,6 +79,7 @@ claude --plugin-dir /path/to/sai/humanize
 claude --plugin-dir /path/to/sai/manage-agent
 claude --plugin-dir /path/to/sai/manage-plan
 claude --plugin-dir /path/to/sai/ocr-finder
+claude --plugin-dir /path/to/sai/promptgen
 claude --plugin-dir /path/to/sai/review-agent
 claude --plugin-dir /path/to/sai/review-claude-md
 claude --plugin-dir /path/to/sai/review-plan
@@ -155,6 +158,14 @@ Find text in images using EasyOCR and return click coordinates. Works on screens
 **Usage**: `/ocr-finder [command] [args]`
 
 [Full documentation →](./ocr-finder/README.md)
+
+### promptgen
+
+Turn rough instructions into optimized, evidence-based AI prompts. Built on 35+ academic papers, Anthropic/OpenAI vendor docs, and Mollick/Wharton Prompting Science Reports. Copies to clipboard.
+
+**Usage**: `/promptgen <instructions> [--for claude|gpt|generic] [--verbose] [--no-copy] [--with-examples]`
+
+[Full documentation ->](./promptgen/README.md)
 
 ### review-agent
 

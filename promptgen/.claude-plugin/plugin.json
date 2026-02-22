@@ -1,0 +1,10 @@
+{
+  "name": "promptgen",
+  "description": "Turn rough instructions into optimized, evidence-based prompts for AI agents. Clipboard output for macOS and Linux.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Smykla Skalski Labs"
+  },
+  "repository": "https://github.com/smykla-skalski/sai",
+  "license": "MIT"
+}
