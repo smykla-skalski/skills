@@ -102,6 +102,10 @@ When the task involves markdown output (docs, reports, changelogs, READMEs, or a
 - Do not hard-wrap or break long lines. Keep each sentence or logical unit on a single line regardless of length. Let the editor or renderer handle wrapping.
 - No trailing whitespace on lines.
 
+When the task involves code changes (code-gen, refactoring, debugging, investigation with code edits, or any agentic workflow that writes or modifies files), append this rule to the generated prompt:
+
+- Commit after each logical unit of work completes. Small, frequent commits make progress easier to track and mistakes easier to revert.
+
 These preferences reflect the prompt author's workflow. The `--raw` flag produces a clean prompt without them.
 
 Writing style rules (applied to the generated prompt text):
