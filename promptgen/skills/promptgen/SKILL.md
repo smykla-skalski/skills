@@ -23,6 +23,10 @@ Parse from `$ARGUMENTS`:
 | `--with-examples` | off     | Include few-shot examples in generated prompt    |
 | `--raw`           | off     | Skip opinionated formatting preferences          |
 
+## Responsibility boundary
+
+Promptgen's job is to produce a prompt. Any deep investigation - reading source files, exploring the codebase, analyzing existing code - belongs to the agent that will run the generated prompt, not to promptgen. Light lookups to understand task structure (e.g. checking what language or framework is in use) are fine. Heavy lifting is not. When in doubt, put the investigation work into the generated prompt as explicit instructions to the target agent.
+
 ## Workflow
 
 ### Phase 1: Input parsing
@@ -53,7 +57,7 @@ Read `$SKILL_DIR/references/prompt-principles.md` in full.
 
 3. Identify what tools or capabilities the agent needs based on the instructions.
 
-4. If the task category is code-gen, refactoring, debugging, testing, or investigation involving code, read `$SKILL_DIR/references/code-for-agents.md` in full. Apply the "Rule for generated prompts" entries from each section that is relevant to the task.
+4. If the task category is code-gen, refactoring, debugging, testing, or investigation involving code, the relevant empirical rules are already baked into the opinionated formatting preferences in Phase 4 - no additional read needed. For RAG-based code agents or chunking-specific prompts, read `$SKILL_DIR/references/code-for-agents.md` for the additional section on code chunking.
 
 5. If `--verbose`, note the category, prompt type, and reasoning.
 
@@ -179,6 +183,30 @@ echo '<generated_prompt>' | bash "$SKILL_DIR/scripts/clipboard.sh"
 /promptgen --for generic create a code review agent for Python PRs
 /promptgen --raw write a migration guide for the new API version
 ```
+
+**Input → output example:**
+
+Input: `/promptgen write a git commit message from staged diff`
+
+Output (truncated):
+
+````markdown
+You are CommitWriter, a git commit message generator.
+Write one conventional commit message per invocation.
+
+<constraints>
+Follow the Conventional Commits spec: type(scope): subject.
+Subject line under 72 characters. Body optional.
+Use present tense ("add feature" not "added feature").
+</constraints>
+
+<instructions>
+1. Read the diff to identify the change type (feat, fix, refactor, docs, chore).
+2. Identify the scope from the changed file paths.
+3. Write a subject line summarizing what and why, not how.
+4. Add a body paragraph only if the motivation is not obvious from the subject.
+</instructions>
+````
 
 ## Error handling
 
