@@ -104,12 +104,12 @@ Generation rules:
 
 Opinionated formatting preferences (skip when `--raw` is set):
 
-When the task involves markdown output (docs, reports, changelogs, READMEs, or any task where the generated prompt will produce markdown files), append these formatting rules to the generated prompt:
+When the task involves markdown output (docs, reports, changelogs, READMEs, or any task where the generated prompt will produce markdown files), include these as literal instructions in the generated prompt's output section:
 
 - Do not hard-wrap or break long lines. Keep each sentence or logical unit on a single line regardless of length. Let the editor or renderer handle wrapping.
 - No trailing whitespace on lines.
 
-When the task involves code changes (code-gen, refactoring, debugging, investigation with code edits, or any agentic workflow that writes or modifies files), append these rules to the generated prompt:
+When the task involves code changes (code-gen, refactoring, debugging, investigation with code edits, or any agentic workflow that writes or modifies files), include these as literal instructions in the generated prompt's instructions section:
 
 - Commit after each logical unit of work completes. Small, frequent commits make progress easier to track and mistakes easier to revert.
 - Use descriptive, consistent names. Misleading names hurt agent comprehension more than terse ones.
