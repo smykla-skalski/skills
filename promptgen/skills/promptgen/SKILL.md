@@ -53,7 +53,9 @@ Read `$SKILL_DIR/references/prompt-principles.md` in full.
 
 3. Identify what tools or capabilities the agent needs based on the instructions.
 
-4. If `--verbose`, note the category, prompt type, and reasoning.
+4. If the task category is code-gen, refactoring, debugging, testing, or investigation involving code, read `$SKILL_DIR/references/code-for-agents.md` in full. Apply the "Rule for generated prompts" entries from each section that is relevant to the task.
+
+5. If `--verbose`, note the category, prompt type, and reasoning.
 
 ### Phase 3: Security assessment
 
@@ -102,11 +104,17 @@ When the task involves markdown output (docs, reports, changelogs, READMEs, or a
 - Do not hard-wrap or break long lines. Keep each sentence or logical unit on a single line regardless of length. Let the editor or renderer handle wrapping.
 - No trailing whitespace on lines.
 
-When the task involves code changes (code-gen, refactoring, debugging, investigation with code edits, or any agentic workflow that writes or modifies files), append this rule to the generated prompt:
+When the task involves code changes (code-gen, refactoring, debugging, investigation with code edits, or any agentic workflow that writes or modifies files), append these rules to the generated prompt:
 
 - Commit after each logical unit of work completes. Small, frequent commits make progress easier to track and mistakes easier to revert.
+- Use descriptive, consistent names. Misleading names hurt agent comprehension more than terse ones.
+- Write correct comments or none. An incorrect comment causes more damage than silence.
+- Remove dead code, unreachable branches, and commented-out blocks.
+- Add type annotations where the language supports them.
+- Keep functions short enough to fit within a single context window chunk (roughly under 100 lines).
+- Put the most important logic near the top of files. Agents front-load attention; content in the final quarter of a file is routinely missed.
 
-These preferences reflect the prompt author's workflow. The `--raw` flag produces a clean prompt without them.
+These preferences reflect the prompt author's workflow and are backed by empirical research in `$SKILL_DIR/references/code-for-agents.md`. The `--raw` flag produces a clean prompt without them.
 
 Writing style rules (applied to the generated prompt text):
 - No sycophantic patterns, chatbot artifacts, or promotional language
