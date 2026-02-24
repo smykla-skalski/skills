@@ -19,6 +19,7 @@ When citing deductions, use these sources:
 - **Arize**: https://arize.com/blog/claude-md-best-practices-learned-from-optimizing-claude-code-with-prompt-learning/
 - **Maxitect**: https://www.maxitect.blog/posts/maximising-claude-code-building-an-effective-claudemd
 - **Dometrain**: https://dometrain.com/blog/creating-the-perfect-claudemd-for-claude-code/
+- **Grinsztajn et al. (2025)**: https://arxiv.org/abs/2602.11988 — empirical study on AGENTS.md/CLAUDE.md effectiveness; key finding: developer-written files with minimal, tooling-specific requirements outperform verbose/overview-heavy files; directory enumeration provides no measurable navigation benefit; redundancy with README reduces effectiveness
 
 ---
 
