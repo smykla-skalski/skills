@@ -185,7 +185,7 @@ Verify token budget: task prompts under 500, system prompts under 1500. If over 
 3. Unless `--no-copy` is set, copy to clipboard:
 
 ```bash
-echo '<generated_prompt>' | bash "$SKILL_DIR/scripts/clipboard.sh"
+echo '<generated_prompt>' | "$SKILL_DIR/scripts/clipboard.sh"
 ```
 
 4. Report clipboard status:
