@@ -21,16 +21,18 @@ claude --plugin-dir /path/to/sai/promptgen
 ## Usage
 
 ```
-/promptgen <instructions> [--for claude|gpt|generic] [--verbose] [--no-copy] [--with-examples]
+/promptgen <instructions> [--for claude|gpt|generic] [--research light|deep] [--verbose] [--no-copy] [--examples] [--raw]
 ```
 
-| Flag              | Default | Purpose                                          |
-|:------------------|:--------|:-------------------------------------------------|
-| (positional)      | -       | Rough instructions for what the prompt should do |
-| `--for <model>`   | claude  | Target: claude, gpt, generic                     |
-| `--verbose`       | off     | Show reasoning behind prompt decisions           |
-| `--no-copy`       | off     | Output to chat only, skip clipboard              |
-| `--with-examples` | off     | Include few-shot examples in generated prompt    |
+| Flag                     | Default | Purpose                                          |
+|:-------------------------|:--------|:-------------------------------------------------|
+| (positional)             | -       | Rough instructions for what the prompt should do |
+| `--for <model>`          | claude  | Target: claude, gpt, generic                     |
+| `--research light\|deep` | off     | Investigate codebase before generating           |
+| `--verbose`              | off     | Show reasoning behind prompt decisions           |
+| `--no-copy`              | off     | Output to chat only, skip clipboard              |
+| `--examples`             | off     | Include few-shot examples in generated prompt    |
+| `--raw`                  | off     | Skip opinionated formatting preferences          |
 
 ## Examples
 
@@ -41,6 +43,12 @@ claude --plugin-dir /path/to/sai/promptgen
 # GPT-targeted prompt
 /promptgen refactor the database layer to use connection pooling --for gpt
 
+# Light research - checks config files first, then generates
+/promptgen --research light refactor the database layer to use connection pooling
+
+# Deep research - reads relevant source before generating
+/promptgen --research deep add pagination to the user listing endpoint
+
 # See the reasoning behind decisions
 /promptgen --verbose investigate auth bypass vulnerabilities in the login flow
 
@@ -48,19 +56,23 @@ claude --plugin-dir /path/to/sai/promptgen
 /promptgen --no-copy create a plan for migrating from REST to GraphQL
 
 # Include few-shot examples in the generated prompt
-/promptgen build a customer support chatbot that handles returns --with-examples
+/promptgen build a customer support chatbot that handles returns --examples
+
+# Skip opinionated formatting preferences
+/promptgen --raw write a migration guide for the new API version
 ```
 
 ## How it works
 
-The skill runs 6 phases:
+The skill runs up to 7 phases:
 
 1. **Input parsing** - extracts flags and instructions from arguments
-2. **Task analysis** - categorizes the task, detects system vs task prompt, reads evidence-based principles
-3. **Security assessment** - checks if the use case involves untrusted input, applies defensive patterns only when warranted
-4. **Prompt generation** - builds the prompt using the target template (Claude/GPT/generic), applies humanize rules
-5. **Self-check** - verifies against 12 anti-pattern checks with evidence citations, revises if any fail
-6. **Output** - displays in fenced code block, copies to clipboard
+2. **Research** (optional) - `--research light` checks config files and directory structure; `--research deep` reads relevant source files and traces call paths
+3. **Task analysis** - categorizes the task, detects system vs task prompt, reads evidence-based principles
+4. **Security assessment** - checks if the use case involves untrusted input, applies defensive patterns only when warranted
+5. **Prompt generation** - builds the prompt using the target template (Claude/GPT/generic), applies formatting preferences
+6. **Self-check** - verifies against 12 anti-pattern checks, revises if any fail
+7. **Output** - displays in fenced code block, copies to clipboard
 
 ## Research basis
 
