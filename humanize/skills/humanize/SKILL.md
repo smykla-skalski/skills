@@ -8,7 +8,10 @@ user-invocable: true
 
 # Humanize
 
-Remove AI writing patterns from text and replace them with natural, human-sounding alternatives. Based on Wikipedia's "Signs of AI writing" guide, maintained by WikiProject AI Cleanup.
+Remove AI writing patterns from text and replace them with natural, human-sounding alternatives. Uses two complementary sources:
+
+- **Detection**: Wikipedia's "Signs of AI writing" guide (WikiProject AI Cleanup) - what to remove
+- **Composition**: Strunk & White's "The Elements of Style" (1918) - how to write the replacement well
 
 ## Arguments
 
@@ -33,6 +36,8 @@ The skill detects 24 AI writing patterns organized into five categories:
 5. Filler and hedging (22-24): filler phrases, excessive hedging, generic positive conclusions
 
 Full pattern descriptions with words-to-watch lists and before/after examples are in `references/patterns.md`.
+
+Composition principles for the rewrite phase (active voice, concrete language, omitting needless words, sentence variety, emphasis placement) are in `references/elements-of-style.md`.
 
 ## Workflow
 
@@ -67,6 +72,8 @@ Read `references/voice-guide.md` in full before starting this phase.
 
 ### Phase 4: Rewrite
 
+Read `references/elements-of-style.md` in full before starting this phase.
+
 Fix every detected pattern regardless of severity. Even faint tells get fixed. Apply fixes in this order:
 
 1. Strip communication artifacts: chatbot phrases, disclaimers, sycophantic openings.
@@ -75,6 +82,14 @@ Fix every detected pattern regardless of severity. Even faint tells get fixed. A
 4. Fix style patterns: replace em dashes with commas or periods where appropriate, remove mechanical boldface and emoji, use sentence case in headings, straighten curly quotes.
 5. Cut filler: remove filler phrases, reduce hedging, replace generic conclusions with specifics.
 6. Add voice: vary sentence rhythm, inject appropriate perspective, let some imperfection in. Match tone and register to the text's audience.
+7. Apply composition principles from `references/elements-of-style.md`:
+   - Convert passive constructions to active voice where the actor is known.
+   - Replace negative hedging ("was not very often on time") with positive assertions ("usually came late").
+   - Swap abstract language for concrete specifics ("a period of unfavorable weather" becomes "it rained every day for a week").
+   - Cut needless words: "the fact that", "who is/which was" padding, "in order to", wordy "he is a man who" constructions.
+   - Break monotonous sentence patterns - if three consecutive sentences use the same structure, recast at least one.
+   - Move the most important word or phrase to the end of each sentence.
+   - Keep one topic per paragraph. End paragraphs with the strongest point, not a trailing detail.
 
 Preserve the original meaning. Do not add information the source text does not contain. Do not remove technical accuracy for the sake of style.
 
@@ -84,7 +99,13 @@ Re-read the rewritten text and check:
 
 - No AI patterns from `references/patterns.md` remain.
 - Core meaning is preserved (no information lost or invented).
-- Sentence structure varies naturally (not uniform length).
+- Sentence structure varies naturally (not uniform length or identical clause patterns).
+- Active voice used where the actor is known. No stacked passives.
+- Statements are positive and definite, not hedged with negatives.
+- Language is concrete and specific, not abstract and general.
+- No needless words: no "the fact that", no "who is/which was" padding, no filler expressions.
+- Emphatic words land at the end of sentences, not buried in the middle.
+- Each paragraph covers one topic and ends with its strongest point.
 - Tone matches the original audience and intent.
 - Text sounds natural when read aloud.
 
@@ -108,7 +129,7 @@ If `--score-only`, stop here.
 ### Phase 7: Output
 
 1. If `--dry-run`: output the rewritten text to chat.
-2. Otherwise: apply edits to the file in-place using the Edit tool. Present a summary of changes.
+2. Otherwise: apply edits to the file in-place. Use the Edit tool for targeted fixes. Use the Write tool to replace the file when the majority of its content changed.
 3. Append the pattern report after the output.
 
 ## Example

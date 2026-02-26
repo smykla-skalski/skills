@@ -1,8 +1,11 @@
 # humanize
 
-A Claude Code plugin that identifies and removes signs of AI-generated writing from text.
+A Claude Code plugin that identifies and removes signs of AI-generated writing from text, then rewrites using proven composition principles.
 
-Based on Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide, maintained by WikiProject AI Cleanup. Detects and fixes 24 AI writing patterns across content, language, style, communication, and filler categories.
+Two complementary sources:
+
+- **Detection**: Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide (WikiProject AI Cleanup) - 24 patterns across content, language, style, communication, and filler categories
+- **Composition**: Strunk & White's [The Elements of Style](https://github.com/obra/the-elements-of-style) (1918) - active voice, concrete language, omitting needless words, sentence variety, emphasis placement
 
 ## Installation
 
